@@ -130,18 +130,21 @@ dispatch_get('/', function() {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $total = $result["total"];
 
-    $stmt = $db->prepare('SELECT * FROM memos WHERE is_private=0 ORDER BY created_at DESC, id DESC LIMIT 100');
+    $stmt = $db->prepare('
+	SELECT 
+		memos.id as id, 
+	  	memos.user as user, 
+		memos.content as content, 
+		memos.is_private as is_private, 
+		memos.created_at as created_at, 
+		memos.updated_at as updated_at,
+		users.username as username
+	FROM memos
+	INNER JOIN users ON memos.user = users.id
+	WHERE is_private=0 
+	ORDER BY created_at DESC, id DESC LIMIT 100');
     $stmt->execute();
     $memos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach($memos as &$memo) {
-        $stmt = $db->prepare('SELECT username FROM users WHERE id = :id');
-        $stmt->bindValue(':id', $memo["user"]);
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $memo["username"] = $result["username"];
-    }
 
     set('memos', $memos);
     set('page', 0);
