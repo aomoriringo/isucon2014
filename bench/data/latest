@@ -1,0 +1,16 @@
+2014/08/24 15:37:14 <<<DEBUG build>>>
+2014/08/24 15:37:14 benchmark mode
+2014/08/24 15:37:14 initialize data...
+2014/08/24 15:37:24 run /home/isu-user/isucon/init.sh timeout 60 sec...
+2014/08/24 15:37:24 done
+2014/08/24 15:37:24 sleeping 5 sec...
+2014/08/24 15:37:29 run benchmark workload: 1
+2014/08/24 15:37:33 [FAIL] status 404 != 200 https://github.com/spumko
+2014/08/24 15:37:47 [FAIL] status 404 != 200 https://github.com/spumko
+2014/08/24 15:37:47 [FAIL] status 404 != 200 https://github.com/spumko
+2014/08/24 15:37:48 [FAIL] status 404 != 200 https://github.com/spumko
+2014/08/24 15:38:01 done benchmark
+[0;32;49mResult:   SUCCESS [0m
+RawScore: 1451.1
+Fails:    4
+Score:    1436.6
